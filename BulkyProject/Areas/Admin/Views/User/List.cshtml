@@ -1,0 +1,144 @@
+﻿@model UserViewModel
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+
+        <div class="mb-3 d-flex justify-content-end">
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCreateUser">
+                Create user
+            </button>
+
+        </div>
+
+
+
+        @if (Model.Users is not null || Model.Users.Any())
+        {
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>UserName</th>
+                        <th>Email</th>
+                        <th> </th>
+                        <th> Lock </th>
+                        <th>UnLock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Users)
+                    {
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>@item.UserName</td>
+                            <td>@item.Email</td>
+                            
+                            <td>
+
+                                <form method="post" asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">
+                                    <button class="btn btn-danger" type="submit">
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </td>
+                            <td>
+                                
+                               
+                                <form method="post" asp-controller="User" asp-action="Block" asp-route-id="@item.Id">
+                                    <button class="btn btn-success w-100" style="cursor:pointer" value="Lock" type="submit">
+                                        Block
+                                    </button>
+                                </form>
+                              </td>
+                              <td>
+                                <form method="post" asp-controller="User" asp-action="UnBlock" asp-route-id="@item.Id">
+                                    <button class="btn btn-Warning w-100" style="cursor:pointer" value="Unlock" type="submit">
+                                        unBlock
+                                    </button>
+                                </form>
+                              
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        }
+        else
+        {
+            <p> No users found</p>
+        }
+        <h1>User Display</h1>
+    </div>
+
+
+
+</div>
+
+<form method="post" asp-controller="User" asp-action="List">
+
+
+
+
+    <div class="modal fade" id="modalCreateUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Createnew user</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" asp-for="UserName" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="text" class="form-control" asp-for="Email" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control"  asp-for="Password"/>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input type="checkbox" id="checkuserrole" class="form-check-input" value="user" checked disabled />
+                            <label class="form-check-label" for="checkuserrole">User role</label>
+                        </div>
+
+
+                        @if (User.IsInRole("SuperadminRole"))
+
+                        {
+                            <div class="form-check">
+                                <input type="checkbox" id="checkAdminrole" class="form-check-input" />
+                                <label class="form-check-label" for="checkAdminrole" asp-for="Admincheck">Admin role</label>
+                            </div>
+
+                        }
+                        
+
+                        
+
+                        
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

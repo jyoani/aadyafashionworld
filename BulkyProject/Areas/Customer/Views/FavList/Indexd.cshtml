@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Fav>
+
+<div class="row pb-3">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                        <!-- Display the product image -->
+
+
+
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Name</p>
+
+                                <form asp-controller="Home" asp-action="Display" method="post">
+                                    <input type="hidden" name="id" value="@product.Id" />
+                                    <button type="submit" class="btn btn-dark">Add To Cart</button>
+                                </form>
+
+                                <button class="btn btn-dark">
+                                    <a asp-controller="FavList" asp-route-id="@product.Id" asp-action="Delete">Remove</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

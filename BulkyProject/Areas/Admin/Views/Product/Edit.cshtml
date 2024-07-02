@@ -1,0 +1,55 @@
+﻿@model Product
+
+<form method="post" class="row">
+    <div class="row pb-2">
+
+
+        <hr />
+    </div>
+    <div class="mb-3">
+        <label>Title</label>
+        <input type="text" asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title"></span>
+    </div>
+    <div class="mb-3">
+        <label>Description</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div class="mb-3">
+        <label>ISBN</label>
+        <input asp-for="ISBN" class="form-control" />
+        <span asp-validation-for="ISBN"></span>
+    </div>
+    <div class="mb-3">
+        <label>AUTHOR</label>
+        <input asp-for="Author" class="form-control" />
+        <span asp-validation-for="Author"></span>
+    </div>
+    <div class="mb-3">
+        <label>ListPrice</label>
+        <input asp-for="ListPrice" class="form-control" />
+        <span asp-validation-for="ListPrice"></span>
+    </div>
+    <div class="mb-3">
+        <label>Price50+</label>
+        <input asp-for="Price50" class="form-control" />
+        <span asp-validation-for="Price50"></span>
+    </div>
+    <div class="mb-3">
+        <label>price100+</label>
+        <input asp-for="Price100" class="form-control" />
+        <span asp-validation-for="Price100"></span>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary" class="form-control">create</button>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary" class="form-control">Back to List</a>
+        </div>
+
+
+    </div>
+
+</form>

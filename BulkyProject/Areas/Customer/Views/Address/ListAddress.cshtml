@@ -1,0 +1,45 @@
+﻿@model List<AddressCustomer>
+<div class="bg-secondary bg-opacity-10 py-2 p-4">
+    <div class="container">
+        <h1>show All Address</h1>
+    </div>
+</div>
+<div class="container p-4 py-3">
+
+    @if (Model != null && Model.Any())
+    {
+
+        <table class="p-4">
+            <thead>
+                <tr>
+                    <th scope="col" class="mb-3">FullName</th>
+
+                    <th scope="col" class="mb-3">Area</th>
+                    <th scope="col" class="mb-3">Building Name</th>
+                    <th scope ="col" class="mb-3">Phn number</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td scope="col" class="mb-3">@item.FullName</td>
+                        <td scope="col" class="mb-3">@item.Area</td>
+                        <td scope="col" class="mb-3">@item.BuildingName</td>
+                        <td scope="col" class="mb-3">@item.Phonenumber</td>
+                        <td>
+                            <a asp-area="" asp-controller="AdminTags" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <p>No Tags found!!!!!</p>
+    }
+
+</div> 

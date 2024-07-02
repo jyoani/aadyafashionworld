@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Product>
+<div class="row pb-3">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+
+                <div class="col-12 p-1">
+
+                    <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                        <img src="@product.ProductImages" class="card-img-top rounded" />
+
+                        <div class="card-body pb-0">
+
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Title</p>
+                                <p class="card-title text-dark text-center">@product.Author</p>
+                                <p class="card-title text-dark text-center">AED @product.Price</p>
+
+                                <button class="btn btn-dark">
+                                    <a asp-controller="Home" asp-route-id="@product.Id" asp-action="display">Add To Cart</a>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    }
+</div>
+
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to color  detail your site's color policy.</p>

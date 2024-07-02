@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Fav>
+
+<div class="row pb-3">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                        @if (product.ProductImags != null && product.ProductImags.Any())
+                        {
+                            <div id="carouselExampleControls-@product.Id" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    @for (int i = 0; i < product.ProductImags.Count; i++)
+                                    {
+                                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                                            <img src="@product.ProductImags[i].ImageURLL" class="d-block w-100" alt="Product Image @(i + 1)">
+                                        </div>
+                                    }
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-@product.Id" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls-@product.Id" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <!-- Display a placeholder image if no images are available -->
+                            <img src="~/images/placeholder.jpg" class="card-img-top rounded" alt="Placeholder Image">
+                        }
+
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Name</p>
+
+                                <form asp-controller="Home" asp-action="Display" method="post">
+                                    <input type="hidden" name="id" value="@product.Id" />
+                                    <button type="submit" class="btn btn-dark">Add To Cart</button>
+                                </form>
+
+                                <button class="btn btn-dark">
+                                    <a asp-controller="FavList" asp-route-id="@product.Id" asp-action="Delete">Remove</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

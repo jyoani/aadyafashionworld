@@ -1,0 +1,79 @@
+﻿@{
+    var sortOrder = Context.Request.Query["sortOrder"];
+    var priceLowToHigh = "text-primary";
+    var priceHighToLow = "text-primary";
+    var nameAscending = "text-primary";
+    var nameDescending = "text-primary";
+    var all = "text-primary";
+
+    switch (sortOrder)
+    {
+        case "priceLowToHigh":
+            priceLowToHigh = "active text-white bg-primary";
+            break;
+        case "priceHighToLow":
+            priceHighToLow = "active text-white bg-primary";
+            break;
+        case "nameAscending":
+            nameAscending = "active text-white bg-primary";
+            break;
+        case "nameDescending":
+            nameDescending = "active text-white bg-primary";
+            break;
+        default:
+            all = "active text-white bg-primary";
+            break;
+
+    }
+
+}
+
+<div class="container">
+    <div class="row flex pt-4">
+        <div class="col-6">
+            <h1>List of Products</h1>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between pb-5 pt-2">
+            <span></span>
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none;" asp-controller="Product" asp-action="Filter" asp-route-sortOrder="priceLowToHigh">
+                <li class="list-group-item @priceLowToHigh">priceLowToHigh</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Product" asp-action="Filter" asp-route-sortOrder="priceHighToLow">
+                <li class="list-group-item @priceHighToLow">priceHighToLow</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Product" asp-action="Filter" asp-route-sortOrder="nameAscending">
+                <li class="list-group-item @nameAscending">nameAscending</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Product" asp-action="Filter" asp-route-sortOrder="nameDescending">
+                <li class="list-group-item @nameDescending">nameDescending</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Product" asp-action="Filter" asp-route-sortOrder="all">
+                <li class="list-group-item @all">All</li>
+                </a>
+            </ul>
+        </div>
+
+
+        <table class="table table-bordered table-striped" id="tblData">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Item Number</th>
+                <th>Price</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows of product data will go here -->
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/filter.js"></script>
+}
