@@ -130,25 +130,25 @@ namespace BulkyProject.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!await _roleManager.RoleExistsAsync(SD.Role_User))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_User));
-            }
+            //if (!await _roleManager.RoleExistsAsync(SD.Role_User))
+            //{
+            //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_User));
+            //}
 
-            if (!await _roleManager.RoleExistsAsync(SD.Role_Employee))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
-            }
+            //if (!await _roleManager.RoleExistsAsync(SD.Role_Employee))
+            //{
+            //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
+            //}
 
-            if (!await _roleManager.RoleExistsAsync(SD.Role_Admin))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
-            }
+            //if (!await _roleManager.RoleExistsAsync(SD.Role_Admin))
+            //{
+            //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
+            //}
 
-            if (!await _roleManager.RoleExistsAsync(SD.Role_Company))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Company));
-            }
+            //if (!await _roleManager.RoleExistsAsync(SD.Role_Company))
+            //{
+            //    await _roleManager.CreateAsync(new IdentityRole(SD.Role_Company));
+            //}
         
         //Input = new()
         //{
